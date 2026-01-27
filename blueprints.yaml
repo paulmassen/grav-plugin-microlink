@@ -2,8 +2,10 @@ name: Microlink
 slug: microlink
 type: plugin
 version: 1.0.0
-description: "Cache côté serveur des réponses de l’API Microlink dans user/data/microlink."
+description: "Server-side cache for Microlink API responses in user/data/microlink."
 icon: database
+homepage: https://github.com/paulmassen/grav-plugin-microlink
+icon: link
 author:
   name: Paul Massendari
   email: paulmassendari@pm.me
