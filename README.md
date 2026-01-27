@@ -62,60 +62,46 @@ You can edit this under **Plugins → Microlink** in the Admin panel.
 
 ## Usage
 
-### Endpoint
+### Link previews in Markdown
 
-The plugin responds to:
+With the default options (**built-in CSS** and **built-in JS** enabled), you only need to tag the links that should show a preview. In your Markdown, add `classes=link-preview` (and optionally `target=_blank`) to the URL:
+
+```markdown
+[Read this article](https://example.com/article?classes=link-preview&target=_blank)
+```
+
+The plugin loads its own CSS and JavaScript. Any link with the class `link-preview` or `microlink-preview` inside a `.markdown-body` container gets a preview card automatically — no theme changes required. The first time a link is seen, the plugin fetches metadata from Microlink, stores it in `user/data/microlink/`, and displays the card; later visits use the cache.
+
+### When the theme must be adapted
+
+You only need to touch your theme if:
+
+- **Previews don’t show** and your content is inside `.markdown-body`, or
+- **The site is in a subdirectory** (e.g. `https://example.com/blog/`).
+
+In that case, make sure the cache URL is passed to the script by adding this on the `<body>` in your layout (e.g. `base.html.twig`):
+
+```twig
+<body data-microlink-cache="{{ microlink_cache_url|default((base_url_relative|rtrim('/')) ~ '/microlink-cache') }}">
+```
+
+Themes that support the plugin (e.g. [Apple Notes](https://github.com/paulmassen/grav-theme-applenotes)) already set this.
+
+### Custom script or no built-in assets
+
+If you turn off **built-in JS** and use your own script, call the local cache instead of the Microlink API:
 
 ```
 GET /microlink-cache?url=<url>
 ```
 
-- **url** (required) – The page URL you want Microlink metadata for (e.g. `https://example.com/article`).
-- The plugin calls `https://api.microlink.io?url=...&screenshot=true` when the cache is empty or expired, then stores and returns the JSON.
-
-### Using it from your theme
-
-Your theme’s JavaScript should call this endpoint instead of `https://api.microlink.io` when loading link previews.
-
-1. **Expose the cache URL in the template**
-
-In your layout (e.g. `base.html.twig`), pass the cache URL to the frontend:
-
-```twig
-<body data-microlink-cache="{{ (base_url_relative|rtrim('/')) ~ '/microlink-cache' }}">
-```
-
-2. **Use it in your preview script**
-
-Example (same pattern as the Microlink API, but using your cache URL):
-
-```javascript
-const endpoint = (document.body && document.body.dataset.microlinkCache)
-  ? document.body.dataset.microlinkCache
-  : '/microlink-cache';
-
-fetch(endpoint + '?url=' + encodeURIComponent(url) + '&screenshot=true', {
-  credentials: 'same-origin'
-})
-  .then(r => r.json())
-  .then(data => { /* build preview card from data.data */ });
-```
-
-3. **Which links get previews**
-
-Only request previews for links you care about (e.g. those with a specific class). In Markdown you can do:
-
-```markdown
-[Link text](https://example.com?classes=link-preview&target=_blank)
-```
-
-Your JS then selects `a.link-preview` (and/or `a.microlink-preview`) and fetches `/microlink-cache?url=...` for each.
+The plugin returns the same JSON as `https://api.microlink.io`. Use the `data-microlink-cache` attribute on `<body>` as the base URL, or `/microlink-cache` when the site is at the root.
 
 ### Cache storage
 
-- Directory: `user/data/microlink/`
-- One JSON file per URL, named `{md5(normalized_url)}.json`
-- Created automatically on first write; ensure `user/data/` is writable by the web server.
+- **Directory:** `user/data/microlink/`
+- **Files:** one JSON per URL, named `{md5(normalized_url)}.json`
+- The folder is created on first use; ensure `user/data/` is writable.
 
 ## Troubleshooting
 
