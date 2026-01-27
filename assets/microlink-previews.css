@@ -1,0 +1,137 @@
+/* Microlink – Aperçus de liens
+   Préfixe .markdown-body pour battre .markdown-body a en spécificité */
+.markdown-body .microlink-preview-wrapper {
+    display: block;
+    margin: 0.75rem 0;
+}
+
+.markdown-body .microlink-preview-wrapper>a.link-preview,
+.markdown-body .microlink-preview-wrapper>a.microlink-preview {
+    display: inline;
+}
+
+.markdown-body .microlink-preview-placeholder {
+    min-height: 80px;
+    display: flex;
+    align-items: center;
+    color: #6b7280;
+    font-size: 0.875rem;
+}
+
+.dark .markdown-body .microlink-preview-placeholder {
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.markdown-body .microlink-preview-loading {
+    opacity: 0.8;
+}
+
+/* Carte : bordure + ombre visibles, priorité sur .markdown-body a */
+.markdown-body a.microlink-preview-card {
+    display: flex !important;
+    align-items: stretch;
+    max-width: 480px;
+    min-height: 100px;
+    margin-top: 0.5rem;
+    border: 1px solid rgba(0, 0, 0, 0.15);
+    border-radius: 10px;
+    overflow: hidden;
+    text-decoration: none !important;
+    color: inherit;
+    background: #f5f5f5;
+    box-shadow:
+        0 1px 4px rgba(0, 0, 0, 0.1),
+        0 4px 14px rgba(0, 0, 0, 0.08);
+    transition: border-color 0.2s, box-shadow 0.2s, background 0.2s;
+}
+
+.markdown-body a.microlink-preview-card:hover {
+    border-color: rgba(0, 0, 0, 0.22);
+    box-shadow:
+        0 2px 8px rgba(0, 0, 0, 0.12),
+        0 8px 28px rgba(0, 0, 0, 0.1);
+}
+
+.dark .markdown-body a.microlink-preview-card {
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    box-shadow:
+        0 1px 4px rgba(0, 0, 0, 0.35),
+        0 4px 16px rgba(0, 0, 0, 0.28);
+}
+
+.dark .markdown-body a.microlink-preview-card:hover {
+    border-color: rgba(255, 255, 255, 0.22);
+    box-shadow:
+        0 2px 10px rgba(0, 0, 0, 0.4),
+        0 8px 32px rgba(0, 0, 0, 0.32);
+}
+
+.markdown-body .microlink-preview-card__image {
+    width: 120px;
+    min-width: 120px;
+    flex-shrink: 0;
+    background-size: cover;
+    background-position: center;
+    background-color: #e5e7eb;
+}
+
+.dark .markdown-body .microlink-preview-card__image {
+    background-color: rgba(255, 255, 255, 0.08);
+}
+
+.markdown-body .microlink-preview-card__content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 0.25rem;
+    padding: 0.75rem 1rem;
+    flex: 1;
+    min-width: 0;
+}
+
+.markdown-body .microlink-preview-card__title {
+    font-weight: 600;
+    font-size: 0.9375rem;
+    line-height: 1.3;
+    color: #1a1a1a;
+    text-decoration: none;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.dark .markdown-body .microlink-preview-card__title {
+    color: #f0f0f0;
+}
+
+.markdown-body .microlink-preview-card__description {
+    font-size: 0.8125rem;
+    line-height: 1.4;
+    color: #525252;
+    text-decoration: none;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.dark .markdown-body .microlink-preview-card__description {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.markdown-body .microlink-preview-card__url {
+    font-size: 0.75rem;
+    color: #737373;
+    opacity: 0.95;
+    text-decoration: none;
+}
+
+.dark .markdown-body .microlink-preview-card__url {
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.markdown-body .microlink-preview-card--no-image .microlink-preview-card__content {
+    padding: 1rem;
+}

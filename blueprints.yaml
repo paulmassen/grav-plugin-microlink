@@ -1,0 +1,59 @@
+name: Microlink 
+slug: microlink
+type: plugin
+version: 1.0.0
+description: "Cache côté serveur des réponses de l’API Microlink dans user/data/microlink."
+icon: database
+author:
+  name: Paul Massendari
+  email: paulmassendari@pm.me
+  url: https://github.com/paulmassen
+license: MIT
+
+form:
+  validation: loose
+  fields:
+    enabled:
+      type: toggle
+      label: PLUGIN_ADMIN.PLUGIN_STATUS
+      highlight: 1
+      default: 1
+      options:
+        1: PLUGIN_ADMIN.ENABLED
+        0: PLUGIN_ADMIN.DISABLED
+      validate:
+        type: bool
+
+    built_in_css:
+      type: toggle
+      label: Load built-in CSS
+      highlight: 1
+      default: 1
+      options:
+        1: PLUGIN_ADMIN.YES
+        0: PLUGIN_ADMIN.NO
+      validate:
+        type: bool
+      help: "Include the plugin's default styles for link preview cards. Disable if you use your own CSS."
+
+    built_in_js:
+      type: toggle
+      label: Load built-in JavaScript
+      highlight: 1
+      default: 1
+      options:
+        1: PLUGIN_ADMIN.YES
+        0: PLUGIN_ADMIN.NO
+      validate:
+        type: bool
+      help: "Include the plugin's script that fetches previews for links with class link-preview or microlink-preview. Disable if you use your own script."
+
+    cache_ttl_days:
+      type: number
+      label: Durée de validité du cache (jours)
+      default: 7
+      min: 1
+      max: 365
+      validate:
+        type: number
+      help: "Après ce nombre de jours, une entrée en cache est considérée comme expirée et l’API Microlink sera rappelée."
