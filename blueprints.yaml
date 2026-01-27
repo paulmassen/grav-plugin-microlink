@@ -3,7 +3,6 @@ slug: microlink
 type: plugin
 version: 1.0.0
 description: "Server-side cache for Microlink API responses in user/data/microlink."
-icon: database
 homepage: https://github.com/paulmassen/grav-plugin-microlink
 icon: link
 author:
