@@ -14,6 +14,10 @@ Support to the Grav CMS 👇
 
 </div>
 
+## What is Microlink?
+
+[Microlink](https://microlink.io) is a service that generates **previews of web pages**. Given a URL, it returns metadata such as the page title, description, main image (e.g. Open Graph), and more. That allows you to display rich “link cards” (title + image + excerpt) instead of plain URLs when you embed or reference external links in your content.
+
 This plugin adds **server-side caching** for the [Microlink API](https://microlink.io) in Grav CMS. It exposes a local endpoint (`/microlink-cache`) that your frontend can call instead of hitting the Microlink API directly, storing responses in `user/data/microlink/`. This reduces API usage (Microlink’s free tier is about 50 requests/day) and speeds up link previews for returning visitors.
 
 ## Features
