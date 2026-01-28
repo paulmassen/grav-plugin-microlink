@@ -1,11 +1,6 @@
-# v1.1.0
+# v1.2.0
 ## 01/28/2026
 
 1. [](#new)
-    * Added cache for images too
+    * Added cache for images
 
-# v1.0.0
-## 01/27/2026
-
-1. [](#new)
-    * Initial Release
